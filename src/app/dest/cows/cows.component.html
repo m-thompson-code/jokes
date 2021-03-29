@@ -1,0 +1,10 @@
+<h1>Subjects</h1>
+
+<div class="debugger" *ngFor="let cow of cows">
+    {{ cow | async }}
+</div>
+
+<div class="row">
+    <button (click)="cowsGo()">Emit next value</button>
+    <button (click)="addCow()">Add Cow</button>
+</div>
