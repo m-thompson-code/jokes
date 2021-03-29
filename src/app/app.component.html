@@ -1,42 +1,29 @@
-<p>Jokes</p>
+<h2>Jokes</h2>
 
-<div>
-    1. We only want to make a single api request the first time we call getJoke()
-</div>
-<div>
-    2. We expect to get the same value whenever calling getJoke() again, but not make a request
-</div>
-<div>
-    3. When calling reload joke, we want to create a single new api request
-</div>
-<div>
-    4. We expect any existing observables to publish this new value
-</div>
+<p>
+    1. We only want to make a single API request the first time we call getJoke()
+</p>
+<p>
+    2. Without making any new API requests, we expect to get the same value whenever calling getJoke()
+</p>
+<p>
+    3. When calling reloadJoke(), we want to create another single API request
+</p>
+<p>
+    4. We expect any existing subscriptions to observe this new published value
+</p>
 
-<br>
-
-<div>
-    <button (click)="getJoke()">Get Joke</button> | 
-    <button (click)="reloadJoke()">Reload Joke</button> | 
-    <button (click)="clearJoke()">Clear Joke</button>
-</div>
-
-<div *ngIf="joke$ | async as joke">
-    <p>{{ joke.setup }}</p>
-    <p>{{ joke.punchline }}</p>
-</div>
-
-<br><br><br>
-
-<div>
-    Echo Chamber of Laughs
-</div>
-
-<p>We want to tell only the same joke:</p>
-
-<div>
+<div class="row">
+    <button (click)="getJoke()">Get Joke</button>
+    <button (click)="reloadJoke()">Reload Jokes</button>
     <button (click)="clearJokes()">Clear Jokes</button>
 </div>
+
+<h3>
+    Echo Chamber of Laughs
+</h3>
+
+<p>We want to tell only the same joke:</p>
 
 <div>
     <ng-container *ngFor="let joke$ of jokes$">

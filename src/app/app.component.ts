@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    joke$?: Observable<Joke> | null;
     jokes$: Observable<Joke>[] = [];
 
     constructor(private jokeService: JokeService) {}
@@ -22,16 +21,11 @@ export class AppComponent {
             })
         );
 
-        this.joke$ = joke$;
         this.jokes$.push(joke$);
     }
 
     reloadJoke(): void {
         this.jokeService.reloadJoke();
-    }
-
-    clearJoke(): void {
-        this.joke$ = null;
     }
 
     clearJokes(): void {
