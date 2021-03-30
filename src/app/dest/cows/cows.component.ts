@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 const COW_SOUNDS = [
@@ -7,30 +7,27 @@ const COW_SOUNDS = [
     'moooooo',
     'quack',
     'moo moo ma moo',
-]
+];
 
 @Component({
     selector: 'app-cows',
     templateUrl: './cows.component.html',
     styleUrls: ['./cows.component.scss']
 })
-export class CowsComponent implements OnInit {
+export class CowsComponent implements OnDestroy {
     subject: ReplaySubject<string>;
     cows: Observable<string>[] = [];
 
     subscription?: Subscription;
 
     constructor() {
-        this.subject = new ReplaySubject(1);
+        this.subject = new ReplaySubject();
 
         this.subscription = this.subject.subscribe(value => {
             console.log(value);
         });
 
         this.cowsGo();
-    }
-
-    ngOnInit(): void {
     }
 
     addCow(): void {

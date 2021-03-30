@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReplaySubject, Subject, Subscription } from 'rxjs';
 
 @Component({
@@ -6,7 +6,7 @@ import { ReplaySubject, Subject, Subscription } from 'rxjs';
     templateUrl: './subjects.component.html',
     styleUrls: ['./subjects.component.scss']
 })
-export class SubjectsComponent implements OnInit {
+export class SubjectsComponent {
     subject: ReplaySubject<string>;
 
     subscription?: Subscription;
@@ -19,9 +19,6 @@ export class SubjectsComponent implements OnInit {
         });
 
         this.cowsGo();
-    }
-
-    ngOnInit(): void {
     }
 
     cowsGo(): void {

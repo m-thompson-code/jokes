@@ -1,0 +1,10 @@
+img {
+    max-width: 600px;
+}
+
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

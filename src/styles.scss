@@ -2,6 +2,7 @@
 body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 $spacing: 6px;
@@ -49,8 +50,16 @@ button {
     display: flex;
     flex-direction: row;
     margin: -$spacing;
+    margin-bottom: $spacing * 2;
 
     * {
         margin: $spacing;
     }
+}
+
+img {
+    min-width: 1px;
+    max-width: 300px;
+    height: auto;
+    border-radius: $spacing;
 }

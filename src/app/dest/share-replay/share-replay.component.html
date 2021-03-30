@@ -1,0 +1,13 @@
+<h1>Share Replay</h1>
+
+<div class="row">
+    <button (click)="cowsGo()">Emit next value</button>
+    <button (click)="addCow()">Add Cow</button>
+</div>
+
+<div class="debugger" *ngFor="let cow$ of cows">
+    <ng-container *ngIf="cow$ | async as cow">
+        {{ cow | json }}<br>
+        <img [src]="cow.imageUrl">
+    </ng-container>
+</div>
