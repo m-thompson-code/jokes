@@ -6,5 +6,7 @@ Creating an Angular Service that has the following:
 2. Method that will make a new API request and all subscriptions to the first method will observe the latest published value
 
 `npm run start` - run Angular app
+
 `npm run server` - run local server (required for the share-replay page)
+
 `npm run both` - runs both at the same time
