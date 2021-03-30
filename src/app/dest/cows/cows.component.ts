@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject, Observable, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -14,18 +14,12 @@ const COW_SOUNDS = [
     templateUrl: './cows.component.html',
     styleUrls: ['./cows.component.scss']
 })
-export class CowsComponent implements OnDestroy {
+export class CowsComponent {
     subject: ReplaySubject<string>;
     cows: Observable<string>[] = [];
 
-    subscription?: Subscription;
-
     constructor() {
         this.subject = new ReplaySubject();
-
-        this.subscription = this.subject.subscribe(value => {
-            console.log(value);
-        });
 
         this.cowsGo();
     }
@@ -46,9 +40,5 @@ export class CowsComponent implements OnDestroy {
     cowsGo(): void {
         const seed = Math.floor(Math.random() * COW_SOUNDS.length);
         this.subject.next(COW_SOUNDS[seed]);
-    }
-
-    ngOnDestroy(): void {
-        this.subscription?.unsubscribe();
     }
 }

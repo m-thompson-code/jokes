@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReplaySubject, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-subjects',
@@ -7,22 +7,18 @@ import { ReplaySubject, Subject, Subscription } from 'rxjs';
     styleUrls: ['./subjects.component.scss']
 })
 export class SubjectsComponent {
-    subject: ReplaySubject<string>;
+    subject: BehaviorSubject<string>;
 
     subscription?: Subscription;
 
     constructor() {
-        this.subject = new ReplaySubject();
+        this.subject = new BehaviorSubject('moo');
+        // this.subject.next('moo');
 
         this.subscription = this.subject.subscribe(value => {
             console.log(value);
         });
 
-        this.cowsGo();
-    }
-
-    cowsGo(): void {
-        this.subject.next('moo');
     }
 
     ngOnDestroy(): void {

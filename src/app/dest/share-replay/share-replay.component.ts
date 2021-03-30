@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, ReplaySubject, Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { map, share, shareReplay, switchMap, tap } from 'rxjs/operators';
 
@@ -20,7 +20,7 @@ export interface Cow {
     templateUrl: './share-replay.component.html',
     styleUrls: ['./share-replay.component.scss']
 })
-export class ShareReplayComponent implements OnDestroy {
+export class ShareReplayComponent {
     subject: ReplaySubject<string>;
     observable: Observable<Cow>;
     cows: Observable<Cow>[] = [];
@@ -36,12 +36,8 @@ export class ShareReplayComponent implements OnDestroy {
                     sound, imageUrl
                 })))
             }),
-            shareReplay()
+            shareReplay(),
         );
-
-        this.subscription = this.observable.subscribe(value => {
-            console.log(value);
-        });
 
         this.cowsGo();
     }
@@ -70,12 +66,7 @@ export class ShareReplayComponent implements OnDestroy {
         return this.http.post('http://localhost:3000/cow', {
             sound: sound,
         }).pipe(map((res: any) => {
-            console.log(res);
             return res.url as string;
         }));
-    }
-
-    ngOnDestroy(): void {
-        this.subscription?.unsubscribe();
     }
 }
